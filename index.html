@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Clipboard Test</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav"><h3>color</h3><h4>Click to copy &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <button class="tooltip"></button> </h4></div>
+<nav id="parentDiv"></nav>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+<script src="clipboard.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+  var arr=["lightpink","lightblue","lightgreen","#3e4e5c","#00c4cc"];
+  var i;
+  for(i=0;i<arr.length;i++){
+  var div=$("<div></div>");
+  div.attr({"id":"custom-div","class":arr[i],"data-clipboard-text":arr[i]});
+  div.css("background",arr[i]);
+  var p=$("<p></p>");
+  p.text(function(){
+  return arr[i];
+  });
+  $(div).append(p);
+ $('#parentDiv').append(div);
+var btn=$("<button></button>");
+btn.attr({"class":"tooltip"});
+div.append(btn);
+var span=$("<span></span>");
+span.attr({"class":"tooltiptext"});
+span.text(function(){
+return "Copy!!";
+});
+btn.append(span);  
+ }
+  
+var clip=new Clipboard("#custom-div");
+   clip.on('success',function(){
+    alert("Code copied!!");
+   }); 
+   
+</script>
+</body>
+</html>
